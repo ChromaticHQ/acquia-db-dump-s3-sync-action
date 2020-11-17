@@ -1,0 +1,21 @@
+---
+name: 'Acquia Database Backup and S3 Sync'
+description: 'Sync existing database backups/dump from Acquia to S3.'
+author: 'Adam Zimmermann'
+inputs:
+  acquia_project:
+    description: 'Acquia project ID.'
+    required: true
+  acquia_environment:
+    description: 'Acquia environment name.'
+    default: 'prod'
+    required: false
+  aws_s3_bucket:
+    description: 'AWS S3 bucket name.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'archive'
+  color: 'gray-dark'
