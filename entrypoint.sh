@@ -41,8 +41,8 @@ echo "$FILE_DIFF"
 while IFS=$'\n' read -ra DATABASE_FILE_NAME; do
   echo ""
   echo "Downloading $DATABASE_FILE_NAME from Acquia."
-  scp -i ~/.ssh/"$SSH_KEY_NAME" "$INPUT_ACQUIA_PROJECT"."$INPUT_ACQUIA_ENVIRONMENT"@"$INPUT_ACQUIA_PROJECT".ssh.prod.acquia-sites.com:/mnt/files/"$INPUT_ACQUIA_PROJECT"/backups/"$DATABASE_FILE_NAME" ./
+  # scp -i ~/.ssh/"$SSH_KEY_NAME" "$INPUT_ACQUIA_PROJECT"."$INPUT_ACQUIA_ENVIRONMENT"@"$INPUT_ACQUIA_PROJECT".ssh.prod.acquia-sites.com:/mnt/files/"$INPUT_ACQUIA_PROJECT"/backups/"$DATABASE_FILE_NAME" ./
   echo "Uploading $DATABASE_FILE_NAME to the $INPUT_AWS_S3_BUCKET S3 bucket."
-  aws s3 cp "$DATABASE_FILE_NAME" "s3://$INPUT_AWS_S3_BUCKET"
-  rm "$DATABASE_FILE_NAME"
+  # aws s3 cp "$DATABASE_FILE_NAME" "s3://$INPUT_AWS_S3_BUCKET"
+  # rm "$DATABASE_FILE_NAME"
 done <<< "$FILE_DIFF"
