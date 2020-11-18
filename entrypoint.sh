@@ -15,7 +15,7 @@ echo $ACQUIA_PRIVATE_KEY > "~/.ssh/$SSH_KEY_NAME"
 # @todo Remove this.
 # INPUT_ACQUIA_PROJECT="imprivata8"
 # INPUT_ACQUIA_ENVIRONMENT="prod"
-# INPUT_AWS_S3_BUCKET="acquia-test"
+# INPUT_AWS_S3_BUCKET="imprivata-backup-test"
 
 # Get a list of available Acquia databases.
 ACQUIA_DATABASES=$(ssh -i ~/.ssh/"$SSH_KEY_NAME" "$INPUT_ACQUIA_PROJECT"."$INPUT_ACQUIA_ENVIRONMENT"@"$INPUT_ACQUIA_PROJECT".ssh.prod.acquia-sites.com ls /mnt/files/"$INPUT_ACQUIA_PROJECT"/backups/)
