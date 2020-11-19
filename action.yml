@@ -16,6 +16,9 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ secrets.ACQUIA_PRIVATE_KEY }}
+    - ${{ secrets.ACQUIA_PUBLIC_KEY }}
 branding:
   icon: 'archive'
   color: 'gray-dark'

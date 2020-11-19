@@ -1,21 +1,11 @@
+
 #!/bin/bash -l
 
 php --version
 aws --version
 
 # Set the ssh key name.
-SSH_KEY_NAME="acquia"
-
-# @todo Re-enable this.
-sed -i 's/#   StrictHostKeyChecking ask.*/StrictHostKeyChecking accept-new/' /etc/ssh/ssh_config
-
-# Create the ssh key.
-echo $ACQUIA_PRIVATE_KEY > "~/.ssh/$SSH_KEY_NAME"
-
-# @todo Remove this.
-# INPUT_ACQUIA_PROJECT="imprivata8"
-# INPUT_ACQUIA_ENVIRONMENT="prod"
-# INPUT_AWS_S3_BUCKET="imprivata-backup-test"
+SSH_KEY_NAME="id_rsa"
 
 # Get a list of available Acquia databases.
 ACQUIA_DATABASES=$(ssh -i ~/.ssh/"$SSH_KEY_NAME" "$INPUT_ACQUIA_PROJECT"."$INPUT_ACQUIA_ENVIRONMENT"@"$INPUT_ACQUIA_PROJECT".ssh.prod.acquia-sites.com ls /mnt/files/"$INPUT_ACQUIA_PROJECT"/backups/)
