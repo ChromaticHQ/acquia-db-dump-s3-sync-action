@@ -10,6 +10,12 @@ inputs:
     description: 'Acquia environment name.'
     default: 'prod'
     required: false
+  acquia_private_key:
+    description: 'Private Acquia SSH Key.'
+    required: true
+  acquia_public_key:
+    description: 'Public Acquia SSH Key.'
+    required: true
   aws_s3_bucket:
     description: 'AWS S3 bucket name.'
     required: true
