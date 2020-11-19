@@ -17,8 +17,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ secrets.ACQUIA_PRIVATE_KEY }}
-    - ${{ secrets.ACQUIA_PUBLIC_KEY }}
+    - ${{ inputs.acquia_private_key }}
+    - ${{ inputs.acquia_public_key }}
 branding:
   icon: 'archive'
   color: 'gray-dark'
