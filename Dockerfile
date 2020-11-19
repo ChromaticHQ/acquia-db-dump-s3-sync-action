@@ -9,7 +9,6 @@ RUN apt-get update \
     && ./aws/install
 
 ARG ssh_private_key
-ARG ssh_public_key
 
 # Authorize SSH Host
 RUN mkdir -p /root/.ssh && \
