@@ -8,8 +8,11 @@ RUN apt-get update \
     && unzip awscliv2.zip \
     && ./aws/install
 
-ARG ssh_private_key
-ARG ssh_public_key
+ARG INPUT_ACQUIA_PRIVATE_KEY
+ARG INPUT_ACQUIA_PUBLIC_KEY
+ARG AWS_SECRET_ACCESS_KEY
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_DEFAULT_REGION
 
 # Authorize SSH Host
 RUN mkdir -p /root/.ssh && \
@@ -17,10 +20,13 @@ RUN mkdir -p /root/.ssh && \
     ssh-keyscan acquia-sites.com > /root/.ssh/known_hosts
 
 # Add the keys and set permissions
-RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
-    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
-    chmod 600 /root/.ssh/id_rsa && \
-    chmod 600 /root/.ssh/id_rsa.pub
+RUN echo "$INPUT_ACQUIA_PRIVATE_KEY" > /root/.ssh/acquia && \
+    echo "$INPUT_ACQUIA_PUBLIC_KEY" > /root/.ssh/acquia.pub && \
+    chmod 600 /root/.ssh/acquia && \
+    chmod 600 /root/.ssh/acquia.pub && \
+    mkdir ~/.aws && \
+    printf "[default]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" > ~/.aws/credentials && \
+    printf "[default]\nregion=$AWS_DEFAULT_REGION\noutput=$AWS_DEFAULT_OUTPUT" > ~/.aws/config
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh

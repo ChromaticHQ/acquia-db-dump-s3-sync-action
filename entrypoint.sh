@@ -4,7 +4,10 @@ php --version
 aws --version
 
 # Set the ssh key name.
-SSH_KEY_NAME="id_rsa"
+SSH_KEY_NAME="acquia"
+
+# Configure the known hosts.
+ssh-keyscan -t rsa "$INPUT_ACQUIA_PROJECT.ssh.prod.acquia-sites.com" >> ~/.ssh/known_hosts
 
 # Get a list of available Acquia databases.
 ACQUIA_DATABASES=$(ssh -i ~/.ssh/"$SSH_KEY_NAME" "$INPUT_ACQUIA_PROJECT"."$INPUT_ACQUIA_ENVIRONMENT"@"$INPUT_ACQUIA_PROJECT".ssh.prod.acquia-sites.com ls /mnt/files/"$INPUT_ACQUIA_PROJECT"/backups/)
