@@ -3,28 +3,43 @@ name: 'Acquia Database Backup and S3 Sync'
 description: 'Sync existing database backups/dump from Acquia to S3.'
 author: 'Adam Zimmermann'
 inputs:
-  acquia_project:
-    description: 'Acquia project ID.'
-    required: true
   acquia_environment:
     description: 'Acquia environment name.'
     default: 'prod'
-    required: false
+    required: true
+  acquia_project:
+    description: 'Acquia project ID.'
+    required: true
   acquia_private_key:
-    description: 'Private Acquia SSH Key.'
+    description: 'Acquia Private SSH Key.'
     required: true
   acquia_public_key:
-    description: 'Public Acquia SSH Key.'
+    description: 'Acquia Public SSH Key.'
     required: true
   aws_s3_bucket:
     description: 'AWS S3 bucket name.'
+    required: true
+  aws_access_key_id:
+    description: 'AWS Access Key ID.'
+    required: true
+  aws_secret_access_key:
+    description: 'AWS Access Key.'
+    required: true
+  aws_default_region:
+    description: 'AWS Region.'
     required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.acquia_environment }}
+    - ${{ inputs.acquia_project }}
     - ${{ inputs.acquia_private_key }}
     - ${{ inputs.acquia_public_key }}
+    - ${{ inputs.aws_s3_bucket }}
+    - ${{ inputs.aws_access_key_id }}
+    - ${{ inputs.aws_secret_access_key }}
+    - ${{ inputs.aws_default_region }}
 branding:
   icon: 'archive'
   color: 'gray-dark'
