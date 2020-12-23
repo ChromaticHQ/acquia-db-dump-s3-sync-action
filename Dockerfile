@@ -20,15 +20,15 @@ ARG INPUT_AWS_SECRET_ACCESS_KEY
 ARG INPUT_AWS_DEFAULT_REGION
 
 # Authorize SSH Host
-RUN mkdir -p /root/.ssh && \
-    chmod 0700 /root/.ssh && \
-    ssh-keyscan acquia-sites.com > /root/.ssh/known_hosts
+RUN mkdir -p ~/.ssh && \
+    chmod 0700 ~/.ssh && \
+    ssh-keyscan acquia-sites.com > ~/.ssh/known_hosts
 
 # Add the keys and set permissions
-RUN echo "$INPUT_ACQUIA_PRIVATE_KEY" > /root/.ssh/acquia && \
-    echo "$INPUT_ACQUIA_PUBLIC_KEY" > /root/.ssh/acquia.pub && \
-    chmod 600 /root/.ssh/acquia && \
-    chmod 600 /root/.ssh/acquia.pub && \
+RUN echo "$INPUT_ACQUIA_PRIVATE_KEY" > ~/.ssh/acquia && \
+    echo "$INPUT_ACQUIA_PUBLIC_KEY" > ~/.ssh/acquia.pub && \
+    chmod 600 ~/.ssh/acquia && \
+    chmod 600 ~/.ssh/acquia.pub && \
     mkdir ~/.aws && \
     printf "[default]\naws_access_key_id=$INPUT_AWS_ACCESS_KEY_ID\naws_secret_access_key=$INPUT_AWS_SECRET_ACCESS_KEY" > ~/.aws/credentials && \
     printf "[default]\nregion=$INPUT_AWS_DEFAULT_REGION\noutput=$INPUT_AWS_DEFAULT_OUTPUT" > ~/.aws/config
