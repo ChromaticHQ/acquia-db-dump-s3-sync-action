@@ -27,8 +27,8 @@ RUN mkdir -p /github/home/.ssh && \
 # Add the keys and set permissions
 RUN echo "$INPUT_ACQUIA_PRIVATE_KEY" > /github/home/.ssh/acquia && \
     echo "$INPUT_ACQUIA_PUBLIC_KEY" > /github/home/.ssh/acquia.pub && \
-    chmod 600 /github/home/.ssh/acquia && \
-    chmod 600 /github/home/.ssh/acquia.pub && \
+    chmod 644 /github/home/.ssh/acquia && \
+    chmod 644 /github/home/.ssh/acquia.pub && \
     mkdir ~/.aws && \
     printf "[default]\naws_access_key_id=$INPUT_AWS_ACCESS_KEY_ID\naws_secret_access_key=$INPUT_AWS_SECRET_ACCESS_KEY" > ~/.aws/credentials && \
     printf "[default]\nregion=$INPUT_AWS_DEFAULT_REGION\noutput=$INPUT_AWS_DEFAULT_OUTPUT" > ~/.aws/config
