@@ -22,6 +22,7 @@ ARG INPUT_AWS_DEFAULT_REGION
 # Authorize SSH Host
 RUN mkdir -p /github/home/.ssh && \
     chmod 0700 /github/home/.ssh && \
+    touch /github/home/.ssh/known_hosts && \
     ssh-keyscan acquia-sites.com > /github/home/.ssh/known_hosts
 
 # Add the keys and set permissions
