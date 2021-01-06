@@ -25,6 +25,9 @@ RUN mkdir -p /github/home/.ssh && \
     touch /github/home/.ssh/known_hosts && \
     ssh-keyscan acquia-sites.com > /github/home/.ssh/known_hosts
 
+RUN  echo "    IdentityFile ~/.ssh/acquia" >> /etc/ssh/ssh_config
+RUN ssh-keygen -A
+
 # Add the keys and set permissions
 RUN echo "$INPUT_ACQUIA_PRIVATE_KEY" > /github/home/.ssh/acquia && \
     echo "$INPUT_ACQUIA_PUBLIC_KEY" > /github/home/.ssh/acquia.pub && \
