@@ -23,6 +23,8 @@ ARG INPUT_AWS_DEFAULT_REGION
 RUN mkdir -p /github/home/.ssh && \
     chmod 0700 /github/home/.ssh && \
     touch /github/home/.ssh/known_hosts && \
+    touch /github/home/.ssh/acquia && \
+    touch /github/home/.ssh/acquia.pub && \
     ssh-keyscan acquia-sites.com > /github/home/.ssh/known_hosts
 
 RUN  echo "    IdentityFile ~/.ssh/acquia" >> /etc/ssh/ssh_config
