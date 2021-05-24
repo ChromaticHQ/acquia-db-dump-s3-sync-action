@@ -7,6 +7,7 @@ aws --version
 SSH_KEY_NAME="acquia"
 
 # Configure the known hosts.
+mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
 ssh-keyscan -t rsa "$INPUT_ACQUIA_PROJECT.ssh.prod.acquia-sites.com" >> ~/.ssh/known_hosts
 
 # Get a list of available Acquia databases.
